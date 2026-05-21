@@ -13,8 +13,19 @@ export class Unit {
         this.actionsLeft = 2;
         this.tile = null;
 
-        const texture = config.type === 'player' ? 'player_unit' : 'enemy_unit';
+        let texture = config.type === 'player' ? 'player_unit' : 'enemy_unit';
+
+        if (config.role === "swarm") {
+            texture = "aling"
+        }
         this.sprite = scene.add.sprite(x, y, texture).setDepth(5);
+
+        if (config.role === "swarm") {
+            this.sprite.play('aling_idle');
+            this.sprite.displayWidth = 32;
+            this.sprite.displayHeight = 32;
+        }
+
         this.marker = scene.add.circle(x, y - 30, 8, 0xffd700).setDepth(6);
         this.marker.setVisible(false);
         this.nameLabel = scene.add.text(x, y - 45, config.name, {

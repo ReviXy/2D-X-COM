@@ -21,7 +21,7 @@ export class UnitManager {
         const enemyDefs = [
             { name: 'Пришелец-солдат', hp: 70, attack: 12, defense: 4, accuracy: 60, role: null, moveRange: 3 },
             { name: 'Пришелец-элита', hp: 100, attack: 16, defense: 6, accuracy: 70, role: null, moveRange: 3 },
-            { name: 'Пришелец-разведчик', hp: 60, attack: 10, defense: 3, accuracy: 75, role: null, moveRange: 3 },
+            { name: 'Aling', hp: 50, attack: 30, defense: 10, accuracy: 85, role: "swarm", moveRange: 4 },
         ];
 
         playerDefs.forEach((def, i) => {

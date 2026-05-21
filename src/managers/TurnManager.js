@@ -16,6 +16,7 @@ export class TurnManager {
 
     skipUnitTurn() {
         if (this.scene.selectedUnit) {
+            this.scene.targetManager.setUnitsInteractive(true);
             this.scene.selectedUnit.endTurn();
             this.endUnitTurn(this.scene.selectedUnit);
         }
@@ -26,6 +27,7 @@ export class TurnManager {
             this.scene.selectedUnit.deselect();
             this.scene.movementManager.clearHighlights();
             this.scene.targetManager.clearTargetHighlights();
+            this.scene.targetManager.setUnitsInteractive(true);
             this.scene.infoPanel.hide();
             this.scene.selectedUnit = null;
             this.scene.actionMode = null;

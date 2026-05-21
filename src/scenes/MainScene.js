@@ -9,6 +9,7 @@ import { TargetSelectionManager } from '../managers/TargetSelectionManager.js';
 import { TurnManager } from '../managers/TurnManager.js';
 import { UIManager } from '../managers/UIManager.js';
 import tileset from '../assets/tileset.png';
+import aling from '../assets/aling.png';
 import { FogOfWar } from '../vfx/FogOfWar.js';
 import { CombatVFX } from '../vfx/CombatVFX.js';
 
@@ -18,6 +19,19 @@ export class MainScene extends Phaser.Scene {
     }
 
     create() {
+
+        this.anims.create({
+            key: 'aling_idle',
+
+            frames: this.anims.generateFrameNumbers('aling', {
+                start: 0,
+                end: 5
+            }),
+
+            frameRate: 8,
+            repeat: -1
+        });
+
         this.cameras.main.setBackgroundColor('#0f172a');
         this.phase = 'player';
         this.selectedUnit = null;
@@ -41,13 +55,13 @@ export class MainScene extends Phaser.Scene {
         this.createUI();
 
 
-        this.fogOfWar = new FogOfWar(this, this.tilemap, { visionRange: 7 });
-        this.fogOfWar.render();
+        //this.fogOfWar = new FogOfWar(this, this.tilemap, { visionRange: 7 });
+        //this.fogOfWar.render();
 
 
         const playerUnits = this.unitManager.allUnits.filter(u => u.type === 'player');
-        this.fogOfWar.update(playerUnits, this.unitManager.allUnits, this.selectedUnit);
-        
+        //this.fogOfWar.update(playerUnits, this.unitManager.allUnits, this.selectedUnit);
+
 
         this.unitManager.playerUnits.forEach(u => u.resetActions());
         this.uiManager.updateHelpText();
@@ -58,6 +72,10 @@ export class MainScene extends Phaser.Scene {
 
     preload() {
         this.load.spritesheet('tiles', tileset, { frameWidth: 40, frameHeight: 40 });
+        this.load.spritesheet('aling', aling, {
+            frameWidth: 184,
+            frameHeight: 168
+        });
     }
 
     createMap() {
